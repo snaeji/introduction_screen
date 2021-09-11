@@ -16,31 +16,41 @@ class IntroContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: page.decoration.contentMargin,
-      decoration: isFullScreen
-          ? page.decoration.boxDecoration ??
-              BoxDecoration(
-                color: page.decoration.pageColor,
-                borderRadius: BorderRadius.circular(8.0),
-              )
-          : null,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Padding(
-            padding: page.decoration.titlePadding,
-            child: _buildWidget(
-              page.titleWidget,
-              page.title,
-              page.decoration.titleTextStyle,
-            ),
+          Expanded(
+            child:
+              ListView(children: [
+                if (page.image != null)
+                  Align(
+                    alignment: page.decoration.imageAlignment,
+                    child: Padding(
+                      padding: page.decoration.imagePadding,
+                      child: page.image,
+                    ),
+
+                  ),
+                Padding(
+                  padding: page.decoration.titlePadding,
+                  child: _buildWidget(
+                    page.titleWidget,
+                    page.title,
+                    page.decoration.titleTextStyle,
+                  ),
+                ),
+                Padding(
+                  padding: page.decoration.descriptionPadding,
+                  child: _buildWidget(
+                    page.bodyWidget,
+                    page.body,
+                    page.decoration.bodyTextStyle,
+                  ),
+                ),
+              ],),
+
           ),
-          Padding(
-            padding: page.decoration.descriptionPadding,
-            child: _buildWidget(
-              page.bodyWidget,
-              page.body,
-              page.decoration.bodyTextStyle,
-            ),
-          ),
+
           if (page.footer != null)
             Padding(
               padding: page.decoration.footerPadding,

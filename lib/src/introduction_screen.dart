@@ -325,7 +325,6 @@ class IntroductionScreenState extends State<IntroductionScreen> {
                     ? widget.pages!
                         .map((p) => IntroPage(
                               page: p,
-                              scrollController: widget.scrollController,
                               isTopSafeArea: widget.isTopSafeArea,
                               isBottomSafeArea: widget.isBottomSafeArea,
                             ))
